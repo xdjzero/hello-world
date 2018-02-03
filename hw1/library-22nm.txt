@@ -1,0 +1,209 @@
+ *************************************
+ * Models for 22nm
+ *************************************
+
+ .include "22nm_NMOS_HI_K_HP.txt" $ 22nm NMOS transistor model
+ .include "22nm_PMOS_HI_K_HP.txt" $ 22nm PMOS transistor model
+
+ .param L=0.022u $ transistor length for 22nm model
+ .param W=0.56u $ Transistor width for 22nm model
+
+ *****************************************
+ *inverter
+ ****************************************
+
+ .macro inv IN OUT size0=0.672u size1=0.336u
+
+ M1 OUT IN vdd vdd pmos L=L W=size0
+ M2 OUT IN 0 0 nmos L=L W=size1
+
+ .eom
+
+ *****************************************
+ *and-or-nand-nor structure
+ *****************************************
+
+ .macro and_or_and_nor A B C D E OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u
+ + size4=0.952u size5=0.952u size6=0.952u size7=0.952u size8=0.952u size9=0.952u
+
+ mna out a 0 0 nmos W=size1 L=L
+ mnb n7 b 0 0 nmos W=size3 L=L
+ mnc out c n7 0 nmos W=size5 L=L
+ mnd n6 d n7 0 nmos W=size7 L=L
+ mne out e n6 0 nmos W=size9 L=L
+
+ mpa out a n8 vdd pmos W=size0 L=L
+ mpb n8 b vdd vdd pmos W=size2 L=L
+ mpc n8 c n9 vdd pmos W=size4 L=L
+ mpd n9 d vdd vdd pmos W=size6 L=L
+ mpe n9 e vdd vdd pmos W=size8 L=L
+
+ .eom
+
+ *****************************************
+ *or-and-or-nand structure
+ *****************************************
+
+ .macro or_and_or_nand A B C D E OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u
+ + size4=0.952u size5=0.952u size6=0.952u size7=0.952u size8=0.952u size9=0.952u
+
+ mna out a n3 0 nmos W=size1 L=L
+ mnb n3 b 0 0 nmos W=size3 L=L
+ mnc n3 c n2 0 nmos W=size5 L=L
+ mnd n2 d 0 0 nmos W=size7 L=L
+ mne n2 e 0 0 nmos W=size9 L=L
+
+ mpa out a vdd vdd pmos W=size0 L=L
+ mpb n5 b vdd vdd pmos W=size2 L=L
+ mpc out c n5 vdd pmos W=size4 L=L
+ mpd n4 d n5 vdd pmos W=size6 L=L
+ mpe out e n4 vdd pmos W=size8 L=L
+
+ .eom
+
+ *****************************************
+ *or-nand structure
+ *****************************************
+
+ .macro or_nand A B C OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u size4=0.952u
+ + size5=0.952u
+
+ mna out a n0 0 nmos W=size1 L=L
+ mnb n0 b 0 0 nmos W=size3 L=L
+ mnc n0 c 0 0 nmos W=size5 L=L
+
+ mpa out a vdd vdd pmos W=size0 L=L
+ mpb out b n1 vdd pmos W=size2 L=L
+ mpc n1 c vdd vdd pmos W=size4 L=L
+
+ .eom
+
+ *****************************************
+ *and-nor structure
+ *****************************************
+
+ .macro and_nor A B C OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u size4=0.952u
+ + size5=0.952u
+
+ mna out a 0 0 nmos W=size1 L=L
+ mnb out b n1 0 nmos W=size3 L=L
+ mnc n1 c 0 0 nmos W=size5 L=L
+
+ mpa out a n2 vdd pmos W=size0 L=L
+ mpb n2 b vdd vdd pmos W=size2 L=L
+ mpc n2 c vdd vdd pmos W=size4 L=L
+
+ .eom
+
+ *****************************************
+ * NOR-2 structure
+ *****************************************
+
+ .macro nor A B OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u
+
+ mna out b 0 0 nmos W=size1 L=L
+ mnb out a 0 0 nmos W=size3 L=L
+
+ mpa out a n0 vdd pmos W=size0 L=L
+ mpb n0 b vdd vdd pmos W=size2 L=L
+
+ .eom
+
+ *****************************************
+ * NAND-2 structure
+ *****************************************
+
+ .macro nand A B OUT size0=0.952u size1=0.952u size2=0.952u size3=0.952u
+
+ mna out b vdd vdd pmos W=size1 L=L
+ mnb out a vdd vdd pmos W=size3 L=L
+
+ mpa out a n0 0 nmos W=size0 L=L
+ mpb n0 b 0 0 nmos W=size2 L=L
+
+ .eom
+
+ *****************************************
+ * CMOS transmission gate
+ *****************************************
+
+ .macro tgate IN OUT C Cb size0=0.336u size1=0.336u
+
+ M1 IN Cb OUT vdd pmos L=L W=size0
+ M2 IN C OUT 0 nmos L=L W=size1
+
+ .eom
+
+ *****************************************
+ * tristate inverter
+ *****************************************
+
+ .macro tri-inv IN OUT C Cb size0=0.672u size1=0.336u size2=0.672u size3=0.336u
+
+ M1 n0 IN vdd vdd pmos L=L W=size0
+ M3 OUT Cb n0 vdd pmos L=L W=size2
+
+ M2 OUT C n1 0 nmos L=L W=size1
+ M4 n1 IN 0 0 nmos L=L W=size3
+
+ .eom
+
+ *****************************************
+ *inverting edge-triggered flipflop
+ *****************************************
+
+ .macro flop din dout_b clk
+
+ xiclkl0 clk clk_master_n_1 inv size0=0.672u size1=0.392u
+ xidinl0 din in_n_1 inv size0=3.472u size1=1.792u
+
+ xitl0 in_n_1 int clk_master_n_1 clk tgate size0=1.792u size1=1.792u
+
+ xifl0 int b_master_1 inv size0=0.448u size1=0.448u
+
+ xi112 b_master_1 int clk clk_master_n_1 tri-inv size0=0.56u
+ + size1=0.448u size2=0.56u size3=0.448u
+
+ ximid int int_n_1 inv size0=2.072u size1=2.464u
+
+ xiclkl1 clk clk_slave_n_1 inv size0=0.392u size1=0.392u
+
+ xitl1 int_n_1 intd_1 clk clk_slave_n_1 tgate size0=1.68u size1=1.68u
+
+ xi108 intd_1 fb_slav_2 inv size0=0.392u size1=0.392u
+
+ xi114 fb_slav_2 intd_1 clk_slave_n_1 clk tri-inv size0=0.56u
+ + size1=0.448u size2=0.56u size3=0.448u
+
+ xidout intd_1 dout_b inv size0=4.2u size1=3.08u
+
+ .eom
+
+ *****************************************
+ *interconnect element
+ *****************************************
+
+ .macro iconn IN OUT r=10 c=1f
+
+ r1 in out r
+ c1 in 0 c
+ c2 out 0 c
+
+ .eom
+
+ *****************************************
+ *local clock buffer
+ *****************************************
+
+ .macro lcb IN ENB OUT size0=0.672u size1=0.672u size2=0.672u size3=0.672u
+ + size4=1.68u size5=0.896u
+
+ mpa n1 in vdd vdd pmos L=L W=size0
+ mpb n1 enb vdd vdd pmos L=L W=size2
+ mpc out n1 vdd vdd pmos L=L W=size4
+
+ mna n1 in n0 0 nmos L=L W=size1
+ mnb n0 enb 0 0 nmos L=L W=size3
+ mnc out n1 0 0 nmos L=L W=size5
+
+ .eom

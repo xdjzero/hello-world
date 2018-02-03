@@ -1,0 +1,209 @@
+ *************************************
+ * Models for 14nm
+ *************************************
+
+ .include "14nm_NMOS_HI_K_HP.txt" $ 14nm NMOS transistor model
+ .include "14nm_PMOS_HI_K_HP.txt" $ 14nm PMOS transistor model
+
+ .param L=0.018u $ transistor length for 14nm model
+ .param NFIN=7   $ number of fins for 14nm model
+
+ *****************************************
+ *inverter
+ ****************************************
+
+ .macro inv IN OUT size0=12 size1=6
+
+ M1 OUT IN vdd vdd pfet L=L NFIN=size0
+ M2 OUT IN 0 0 nfet L=L NFIN=size1
+
+ .eom
+
+ *****************************************
+ *and-or-nand-nor structure
+ *****************************************
+
+ .macro and_or_and_nor A B C D E OUT size0=17 size1=17 size2=17 size3=17
+ + size4=17 size5=17 size6=17 size7=17 size8=17 size9=17
+
+ mna out a 0 0 nfet NFIN=size1 L=L
+ mnb n7 b 0 0 nfet NFIN=size3 L=L
+ mnc out c n7 0 nfet NFIN=size5 L=L
+ mnd n6 d n7 0 nfet NFIN=size7 L=L
+ mne out e n6 0 nfet NFIN=size9 L=L
+
+ mpa out a n8 vdd pfet NFIN=size0 L=L
+ mpb n8 b vdd vdd pfet NFIN=size2 L=L
+ mpc n8 c n9 vdd pfet NFIN=size4 L=L
+ mpd n9 d vdd vdd pfet NFIN=size6 L=L
+ mpe n9 e vdd vdd pfet NFIN=size8 L=L
+
+ .eom
+
+ *****************************************
+ *or-and-or-nand structure
+ *****************************************
+
+ .macro or_and_or_nand A B C D E OUT size0=17 size1=17 size2=17 size3=17
+ + size4=17 size5=17 size6=17 size7=17 size8=17 size9=17
+
+ mna out a n3 0 nfet NFIN=size1 L=L
+ mnb n3 b 0 0 nfet NFIN=size3 L=L
+ mnc n3 c n2 0 nfet NFIN=size5 L=L
+ mnd n2 d 0 0 nfet NFIN=size7 L=L
+ mne n2 e 0 0 nfet NFIN=size9 L=L
+
+ mpa out a vdd vdd pfet NFIN=size0 L=L
+ mpb n5 b vdd vdd pfet NFIN=size2 L=L
+ mpc out c n5 vdd pfet NFIN=size4 L=L
+ mpd n4 d n5 vdd pfet NFIN=size6 L=L
+ mpe out e n4 vdd pfet NFIN=size8 L=L
+
+ .eom
+
+ *****************************************
+ *or-nand structure
+ *****************************************
+
+ .macro or_nand A B C OUT size0=17 size1=17 size2=17 size3=17 size4=17
+ + size5=17
+
+ mna out a n0 0 nfet NFIN=size1 L=L
+ mnb n0 b 0 0 nfet NFIN=size3 L=L
+ mnc n0 c 0 0 nfet NFIN=size5 L=L
+
+ mpa out a vdd vdd pfet NFIN=size0 L=L
+ mpb out b n1 vdd pfet NFIN=size2 L=L
+ mpc n1 c vdd vdd pfet NFIN=size4 L=L
+
+ .eom
+
+ *****************************************
+ *and-nor structure
+ *****************************************
+
+ .macro and_nor A B C OUT size0=17 size1=17 size2=17 size3=17 size4=17
+ + size5=17
+
+ mna out a 0 0 nfet NFIN=size1 L=L
+ mnb out b n1 0 nfet NFIN=size3 L=L
+ mnc n1 c 0 0 nfet NFIN=size5 L=L
+
+ mpa out a n2 vdd pfet NFIN=size0 L=L
+ mpb n2 b vdd vdd pfet NFIN=size2 L=L
+ mpc n2 c vdd vdd pfet NFIN=size4 L=L
+
+ .eom
+
+ *****************************************
+ * NOR-2 structure
+ *****************************************
+
+ .macro nor A B OUT size0=17 size1=17 size2=17 size3=17
+
+ mna out b 0 0 nfet NFIN=size1 L=L
+ mnb out a 0 0 nfet NFIN=size3 L=L
+
+ mpa out a n0 vdd pfet NFIN=size0 L=L
+ mpb n0 b vdd vdd pfet NFIN=size2 L=L
+
+ .eom
+
+ *****************************************
+ * NAND-2 structure
+ *****************************************
+
+ .macro nand A B OUT size0=17 size1=17 size2=17 size3=17
+
+ mna out b vdd vdd pfet NFIN=size1 L=L
+ mnb out a vdd vdd pfet NFIN=size3 L=L
+
+ mpa out a n0 0 nfet NFIN=size0 L=L
+ mpb n0 b 0 0 nfet NFIN=size2 L=L
+
+ .eom
+
+ *****************************************
+ * CMOS transmission gate
+ *****************************************
+
+ .macro tgate IN OUT C Cb size0=6 size1=6
+
+ M1 IN Cb OUT vdd pfet L=L NFIN=size0
+ M2 IN C OUT 0 nfet L=L NFIN=size1
+
+ .eom
+
+ *****************************************
+ * tristate inverter
+ *****************************************
+
+ .macro tri-inv IN OUT C Cb size0=12 size1=6 size2=12 size3=6
+
+ M1 n0 IN vdd vdd pfet L=L NFIN=size0
+ M3 OUT Cb n0 vdd pfet L=L NFIN=size2
+
+ M2 OUT C n1 0 nfet L=L NFIN=size1
+ M4 n1 IN 0 0 nfet L=L NFIN=size3
+
+ .eom
+
+ *****************************************
+ *inverting edge-triggered flipflop
+ *****************************************
+
+ .macro flop din dout_b clk
+
+ xiclkl0 clk clk_master_n_1 inv size0=12 size1=7
+ xidinl0 din in_n_1 inv size0=62 size1=32
+
+ xitl0 in_n_1 int clk_master_n_1 clk tgate size0=32 size1=32
+
+ xifl0 int b_master_1 inv size0=8 size1=8
+
+ xi112 b_master_1 int clk clk_master_n_1 tri-inv size0=10
+ + size1=8 size2=10 size3=8
+
+ ximid int int_n_1 inv size0=37 size1=44
+
+ xiclkl1 clk clk_slave_n_1 inv size0=7 size1=7
+
+ xitl1 int_n_1 intd_1 clk clk_slave_n_1 tgate size0=30 size1=30
+
+ xi108 intd_1 fb_slav_2 inv size0=7 size1=7
+
+ xi114 fb_slav_2 intd_1 clk_slave_n_1 clk tri-inv size0=10
+ + size1=8 size2=10 size3=8
+
+ xidout intd_1 dout_b inv size0=75 size1=55
+
+ .eom
+
+ *****************************************
+ *interconnect element
+ *****************************************
+
+ .macro iconn IN OUT r=10 c=1f
+
+ r1 in out r
+ c1 in 0 c
+ c2 out 0 c
+
+ .eom
+
+ *****************************************
+ *local clock buffer
+ *****************************************
+
+ .macro lcb IN ENB OUT size0=12 size1=12 size2=12 size3=12
+ + size4=30 size5=16
+
+ mpa n1 in vdd vdd pfet L=L NFIN=size0
+ mpb n1 enb vdd vdd pfet L=L NFIN=size2
+ mpc out n1 vdd vdd pfet L=L NFIN=size4
+
+ mna n1 in n0 0 nfet L=L NFIN=size1
+ mnb n0 enb 0 0 nfet L=L NFIN=size3
+ mnc out n1 0 0 nfet L=L NFIN=size5
+
+ .eom

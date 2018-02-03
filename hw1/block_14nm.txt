@@ -1,0 +1,12 @@
+************************************************
+* Macro for delay element
+*************************************************
+
+.macro delaycell delay_in delay_out
+
+x1 delay_in delay_out inv size0=NFIN size1=NFIN
+M1 vdd delay_out vdd vdd pfet L=L NFIN=3*NFIN
+M2 0 delay_out 0 0 nfet L=L NFIN=3*NFIN
+
+.eom
+

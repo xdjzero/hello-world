@@ -1,0 +1,12 @@
+************************************************
+* Macro for delay element
+*************************************************
+
+.macro delaycell delay_in delay_out
+
+x1 delay_in delay_out inv size0=W size1=W
+M1 vdd delay_out vdd vdd pmos L=L W=3*W
+M2 0 delay_out 0 0 nmos L=L W=3*W
+
+.eom
+
