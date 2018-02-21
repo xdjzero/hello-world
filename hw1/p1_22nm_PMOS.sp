@@ -9,8 +9,8 @@
 *************************************
 
 .param VSUPLY = 0.9
-.param Vclose = 0.2
-.param Vopen  = 0.6
+.param Vlin   = 0.7
+.param Vsat   = 0.1
 
 *************************************
 
@@ -18,14 +18,16 @@
 .include "block_22nm.txt"     $ the delay element
 
 *************************************
+.param W=0.056u
 
-Vdd vdd 0 dc VSUPLY PULSE(0 VSUPLY 0n 25n 1n 1n 27n)
-Vin in 0 dc VSUPLY
-M1 0 in vdd vdd pmos L=L W=W
+Vdd vdd 0 dc VSUPLY
+Vd  vd 0 dc 0 PULSE(0 VSUPLY 0n 25n 1n 1n 27n)
+Vin in 0 dc 0
+M1  vd in vdd vdd pmos L=L W=W
 
-.MEAS TRAN Ron DERIV '-I(vdd)/W' WHEN V(vdd)=Vclose
-.MEAS TRAN rd DERIV '-I(vdd)/W' WHEN V(vdd)=Vopen
-.MEAS TRAN '-I(vdd)/W' WHEN V(vdd)=VSUPLY
+.MEAS TRAN Ron DERIV 'I(vd)/W' WHEN V(vd)=Vlin
+.MEAS TRAN rd DERIV 'I(vd)/W' WHEN V(vd)=Vsat
+.MEAS TRAN 'I(vd)' WHEN V(vd)=0
 .DC VSUPLY 0 0.9 0.02
 .TRAN .1n 25n
 
