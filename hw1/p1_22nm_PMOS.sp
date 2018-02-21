@@ -21,7 +21,7 @@
 
 Vdd vdd 0 dc VSUPLY PULSE(0 VSUPLY 0n 25n 1n 1n 27n)
 Vin in 0 dc VSUPLY
-M1 vdd in 0 0 nmos L=L W=W
+M1 0 in vdd vdd pmos L=L W=W
 
 .MEAS TRAN Ron DERIV '-I(vdd)/W' WHEN V(vdd)=Vclose
 .MEAS TRAN rd DERIV '-I(vdd)/W' WHEN V(vdd)=Vopen
