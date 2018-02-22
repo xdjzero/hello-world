@@ -13,12 +13,12 @@
 
 *************************************
 
-.include "library-22nm.txt"   $ the library of circuit elements
-.include "block_22nm.txt"     $ the delay element
+.include "library-14nm.txt"   $ the library of circuit elements
+.include "block_14nm.txt"     $ the delay element
 
 *************************************
 
-x0 enable OUT n1 nand size0=2*W size1=2*W size2=W size3=W
+x0 enable OUT n1 nand size0=2*NFIN size1=2*NFIN size2=NFIN size3=NFIN
 x1 n1 n2 delaycell
 x2 n2 n3 delaycell
 x3 n3 n4 delaycell
@@ -37,6 +37,7 @@ v1 vdd 0 dc VDD
 *************************************
 
 Venable enable 0 DC VDD
+
 .IC V(n1) = 0
 *PMOS
 .PROB TRAN 'I(x1.X1.M1)'
@@ -44,9 +45,8 @@ Venable enable 0 DC VDD
 *NMOS
 .PROB TRAN 'I(x1.X1.M2)'
 
-.MEAS TRAN PCgate INTEG '-I(x1.X1.M1)/VDD' from=127p to=165p
-.MEAS TRAN NCgate INTEG ' I(x1.X1.M2)/VDD' from=73p to=100p
-
+.MEAS TRAN PCgate INTEG '-I(x1.X1.M1)/VDD' from=584p to=597p
+.MEAS TRAN NCgate INTEG ' I(x1.X1.M2)/VDD' from=551p to=566p
 .TRAN 1n 2n UIC
 .END
 

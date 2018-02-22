@@ -38,15 +38,23 @@ v1 vdd 0 dc VDD
 
 Venable enable 0 DC VDD
 .IC V(n1) = 0
-*PMOS
-.PROB TRAN 'I(x1.X1.M1)'
 
-*NMOS
-.PROB TRAN 'I(x1.X1.M2)'
+.TRAN 1n 100n UIC
 
-.MEAS TRAN PCgate INTEG '-I(x1.X1.M1)/VDD' from=127p to=165p
-.MEAS TRAN NCgate INTEG ' I(x1.X1.M2)/VDD' from=73p to=100p
+.MEAS TRAN delay_0 trig V(n1) td=1.2ns val='vdd/2' cross=1
++                  targ V(n2) td=1.2ns val='vdd/2' cross=1
+.MEAS TRAN delay_1 trig V(n1) td=1.15ns val='vdd/2' cross=1
++                  targ V(n2) td=1.15ns val='vdd/2' cross=1
 
-.TRAN 1n 2n UIC
+.ALTER case 2: VDD=0.7
+.param VDD=0.7
+
+.ALTER case 3: VDD=0.5
+.param VDD=0.5
+
+.ALTER case 4: VDD=0.3
+.param VDD=0.3
+
+.TEMP 30
 .END
 

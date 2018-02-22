@@ -14,15 +14,16 @@
 
 *************************************
 
-.include "library-22nm.txt"   $ the library of circuit elements
-.include "block_22nm.txt"     $ the delay element
+.include "library-14nm.txt"   $ the library of circuit elements
+.include "block_14nm.txt"     $ the delay element
 
 *************************************
 .param W=0.056u
+.param NFIN=1
 Vdd vdd 0 VSUPLY
 Vgs vdd g 0
 Vds vdd d myvds
-M1 d g vdd vdd pmos L=L W=W
+M1 d g vdd vdd pfet L=L NFIN=NFIN
 
 .MEAS DC Gm DERIV '-I(Vds)/W' WHEN V(g)=0.7
 .PRINT DC Gm=GMO(M1)
