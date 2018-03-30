@@ -8,53 +8,55 @@
 
 *************************************
 
-.param VDD = 0.9
 .global vdd
+.param  VDD=0.8
+*************************************
+
+.include "flop_library_22nm.txt"   $ the library of circuit elements
 
 *************************************
 
-.include "library-22nm.txt"   $ the library of circuit elements
-.include "block_22nm.txt"     $ the delay element
+v28 din  0 PWL
++ 0s        5v 
++ 1n        5v 
++ 2n        0v 
++ Td = "DelayTime"					$ Offsets din from time 0 by DelayTime
+v27 clk 0 PWL
++ 0s        0v 
++ 3n        0v 
++ 4n        5v 
 
-*************************************
+v2  vdd  0 dc=VDD
 
-x0 enable OUT n1 nand size0=2*W size1=2*W size2=W size3=W
-x1 n1 n2 delaycell
-x2 n2 n3 delaycell
-x3 n3 n4 delaycell
-x4 n4 n5 delaycell
-x5 n5 n6 delaycell
-x6 n6 n7 delaycell
-x7 n7 n8 delaycell
-x8 n8 OUT delaycell
+.PARAM DelayTime= Opt1 ( 0.0n, 0.0n, 5.0n )
 
-v1 vdd 0 dc VDD
+.TRAN 1n 8n Sweep				Optimize = Opt1
++ 				Result   = MaxVout 	$ Look at measure
++ 				Model    = OptMod
+
+.MEASURE Tran MaxVout Max v(dout) Goal = `v(Vdd)'
+
+.MEASURE Tran SetupTime					Trig v(din)  Val = `v(Vdd)/2' Fall = 1
++ 					Targ v(clk) Val = `v(Vdd)/2' Rise = 1
+
+.MODEL OptMod Opt 
++ Method = Bisection
+.OPTIONS Post Brief NoMod
+
+
+x0 din clk out dff_a
+x1 out dout inv Wp=1500n Wn=1200n
+x2 out load Wn=6000n
 
 *************************************
 * you will need to modify the following 
 * lines to apply an input stimulus 
-* and clock to the circuit
+* and clk to the circuit
 *************************************
-
-Venable enable 0 DC VDD
-.IC V(n1) = 0
-
-.TRAN 1n 100n UIC
-
-.MEAS TRAN delay_0 trig V(n1) td=1.2ns val='vdd/2' cross=1
-+                  targ V(n2) td=1.2ns val='vdd/2' cross=1
-.MEAS TRAN delay_1 trig V(n1) td=1.15ns val='vdd/2' cross=1
-+                  targ V(n2) td=1.15ns val='vdd/2' cross=1
 
 .ALTER case 2: VDD=0.7
 .param VDD=0.7
 
-.ALTER case 3: VDD=0.5
-.param VDD=0.5
-
-.ALTER case 4: VDD=0.3
-.param VDD=0.3
-
-.TEMP 30
+.TEMP 25
 .END
 
