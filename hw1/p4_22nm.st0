@@ -1,0 +1,56 @@
+****** HSPICE -- K-2015.06-SP2 linux64 (Nov 18 2015) ******
+ Input File: p4_22nm.sp
+ lic:
+ lic: FLEXlm: v11.2.1
+ lic: USER:   dxie1                HOSTNAME: mario.ece.utexas.edu
+ lic: HOSTID: "90e2ba1b3160"       PID:      4859
+ lic: Using FLEXlm license file:
+ lic: /usr/local/packages/synopsys_2015/key
+ lic: Checkout 1 hspice
+ lic: License/Maintenance for hspice will expire on 14-jan-2019/2017.12
+ lic: 4(in_use)/50(total) FLOATING license(s) on SERVER /usr/local/packages/synopsys_2015/key
+ lic:
+ init: begin read circuit files,  cpu clock=  2.70E-01
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/behave
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/bjt
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/burr_brn
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/comlinear
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/dio
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/fet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/lin_tech
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/pci
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/signet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ti
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/tline
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/xilinx
+       option runlvl
+       option runlvl =     6.00
+       option post
+ init: end read circuit files,  cpu clock=  2.70E-01 peak memory=       195 mb
+ init: begin check errors,  cpu clock=  2.70E-01
+ init: end check errors,  cpu clock=  2.80E-01 peak memory=       195 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  2.80E-01
+       establish matrix -- done,  cpu clock=  2.90E-01 peak memory=       195 mb
+       re-order matrix -- done,  cpu clock=  2.90E-01 peak memory=       195 mb
+ init: end setup matrix,  cpu clock=  2.90E-01 peak memory=       196 mb
+ output: p4_22nm.mt0
+ sweep: tran tran0    begin, stop_t=  1.00E-07 #sweeps= 101 cpu clock=  3.00E-01
+ **error** stop simulation by signal SIGINT = 2
+
+ lic: Release hspice token(s)

@@ -1,0 +1,4 @@
+$DATA1 SOURCE='HSPICE' VERSION='K-2015.06-SP2 linux64' PARAM_COUNT=0
+.TITLE 'case 2: vds=0.9'
+ gm               temper           alter#          
+   16.4405          30.0000        2               

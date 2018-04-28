@@ -1,0 +1,163 @@
+****** HSPICE -- K-2015.06-SP2 linux64 (Nov 18 2015) ******
+ Input File: tsu_b.sp
+ lic:
+ lic: FLEXlm: v11.2.1
+ lic: USER:   dxie1                HOSTNAME: mario.ece.utexas.edu
+ lic: HOSTID: "90e2ba1b3160"       PID:      30017
+ lic: Using FLEXlm license file:
+ lic: /usr/local/packages/synopsys_2015/key
+ lic: Checkout 1 hspice
+ lic: License/Maintenance for hspice will expire on 14-jan-2019/2017.12
+ lic: 2(in_use)/50(total) FLOATING license(s) on SERVER /usr/local/packages/synopsys_2015/key
+ lic:
+ init: begin read circuit files,  cpu clock=  2.90E-01
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/behave
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/bjt
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/burr_brn
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/comlinear
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/dio
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/fet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/lin_tech
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/pci
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/signet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ti
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/tline
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/xilinx
+       option runlvl
+       option runlvl =     6.00
+       option post
+       option post
+       option brief
+       option nomod
+ init: end read circuit files,  cpu clock=  2.90E-01 peak memory=       195 mb
+ init: begin check errors,  cpu clock=  2.90E-01
+ init: end check errors,  cpu clock=  3.00E-01 peak memory=       196 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  3.00E-01
+       establish matrix -- done,  cpu clock=  3.00E-01 peak memory=       196 mb
+       re-order matrix -- done,  cpu clock=  3.00E-01 peak memory=       196 mb
+ init: end setup matrix,  cpu clock=  3.00E-01 peak memory=       196 mb
+ sweep: begin optimization
+ dcop: begin dcop,  cpu clock=  3.10E-01
+ dcop: begin pseudo transient
+ dcop: end pseudo transient
+ dcop: end dcop,  cpu clock=  4.70E-01 peak memory=       196 mb  tot_iter=     413
+ sweep: tran tran0    begin, stop_t=  8.00E-09 #sweeps=   9 cpu clock=  4.70E-01
+ tran: time= 1.0000E-09 tot_iter=       4 conv_iter=       2 cpu clock= 4.80E-01
+ tran: time= 1.6558E-09 tot_iter=      80 conv_iter=      21 cpu clock= 4.80E-01
+ tran: time= 2.5934E-09 tot_iter=     184 conv_iter=      55 cpu clock= 5.00E-01
+ tran: time= 3.5000E-09 tot_iter=     188 conv_iter=      57 cpu clock= 5.00E-01
+ tran: time= 4.0000E-09 tot_iter=     768 conv_iter=     223 cpu clock= 6.10E-01
+ tran: time= 5.1359E-09 tot_iter=     824 conv_iter=     240 cpu clock= 6.10E-01
+ tran: time= 6.2407E-09 tot_iter=     828 conv_iter=     241 cpu clock= 6.10E-01
+ tran: time= 7.7417E-09 tot_iter=     831 conv_iter=     242 cpu clock= 6.20E-01
+ tran: time= 8.0000E-09 tot_iter=     834 conv_iter=     243 cpu clock= 6.20E-01
+ sweep: tran tran0    end,  cpu clock=  6.20E-01 peak memory=       196 mb
+ dcop: begin dcop,  cpu clock=  6.20E-01
+ dcop: begin pseudo transient
+ dcop: end pseudo transient
+ dcop: end dcop,  cpu clock=  7.80E-01 peak memory=       196 mb  tot_iter=     826
+ sweep: tran tran0    begin, stop_t=  8.00E-09 #sweeps=   9 cpu clock=  7.80E-01
+ tran: time= 1.3000E-09 tot_iter=       4 conv_iter=       2 cpu clock= 7.80E-01
+ tran: time= 3.0000E-09 tot_iter=       6 conv_iter=       3 cpu clock= 7.80E-01
+ tran: time= 3.5000E-09 tot_iter=       8 conv_iter=       4 cpu clock= 7.80E-01
+ tran: time= 4.0000E-09 tot_iter=     610 conv_iter=     180 cpu clock= 9.00E-01
+ tran: time= 5.0000E-09 tot_iter=     674 conv_iter=     198 cpu clock= 9.10E-01
+ tran: time= 6.0000E-09 tot_iter=     680 conv_iter=     200 cpu clock= 9.10E-01
+ tran: time= 6.5000E-09 tot_iter=     682 conv_iter=     201 cpu clock= 9.10E-01
+ tran: time= 7.4542E-09 tot_iter=     865 conv_iter=     253 cpu clock= 9.30E-01
+ tran: time= 8.0000E-09 tot_iter=     867 conv_iter=     254 cpu clock= 9.30E-01
+ sweep: tran tran0    end,  cpu clock=  9.30E-01 peak memory=       196 mb
+ sweep: end optimization
+>error          ***** hspice job aborted
+ init: begin read circuit files,  cpu clock=  9.50E-01
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ad
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/behave
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/bjt
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/burr_brn
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/comlinear
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/dio
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/fet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/lin_tech
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/pci
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/signet
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/ti
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/tline
+       option search = /usr/local/packages/synopsys_2015/hspice/hspice/
+                         parts/xilinx
+       option runlvl
+       option runlvl =     6.00
+       option post
+       option post
+       option brief
+       option nomod
+ init: end read circuit files,  cpu clock=  9.50E-01 peak memory=       196 mb
+ init: begin check errors,  cpu clock=  9.50E-01
+ init: end check errors,  cpu clock=  9.60E-01 peak memory=       196 mb
+ init: begin setup matrix, pivot=     0 cpu clock=  9.60E-01
+       establish matrix -- done,  cpu clock=  9.60E-01 peak memory=       196 mb
+       re-order matrix -- done,  cpu clock=  9.60E-01 peak memory=       196 mb
+ init: end setup matrix,  cpu clock=  9.60E-01 peak memory=       196 mb
+ sweep: begin optimization
+ dcop: begin dcop,  cpu clock=  9.60E-01
+ dcop: begin pseudo transient
+ dcop: end pseudo transient
+ dcop: end dcop,  cpu clock=  1.12E+00 peak memory=       191 mb  tot_iter=     424
+ sweep: tran tran0    begin, stop_t=  8.00E-09 #sweeps=   9 cpu clock=  1.12E+00
+ tran: time= 1.0000E-09 tot_iter=       4 conv_iter=       2 cpu clock= 1.12E+00
+ tran: time= 1.6089E-09 tot_iter=      80 conv_iter=      22 cpu clock= 1.12E+00
+ tran: time= 2.4963E-09 tot_iter=     186 conv_iter=      56 cpu clock= 1.13E+00
+ tran: time= 3.5000E-09 tot_iter=     190 conv_iter=      58 cpu clock= 1.13E+00
+ tran: time= 4.0000E-09 tot_iter=     714 conv_iter=     205 cpu clock= 1.18E+00
+ tran: time= 4.9972E-09 tot_iter=     753 conv_iter=     217 cpu clock= 1.18E+00
+ tran: time= 5.9961E-09 tot_iter=     756 conv_iter=     218 cpu clock= 1.18E+00
+ tran: time= 7.4033E-09 tot_iter=     759 conv_iter=     219 cpu clock= 1.18E+00
+ tran: time= 8.0000E-09 tot_iter=     762 conv_iter=     220 cpu clock= 1.18E+00
+ sweep: tran tran0    end,  cpu clock=  1.18E+00 peak memory=       191 mb
+ dcop: begin dcop,  cpu clock=  1.19E+00
+ dcop: begin pseudo transient
+ dcop: end pseudo transient
+ dcop: end dcop,  cpu clock=  1.27E+00 peak memory=       191 mb  tot_iter=     848
+ sweep: tran tran0    begin, stop_t=  8.00E-09 #sweeps=   9 cpu clock=  1.27E+00
+ tran: time= 1.3000E-09 tot_iter=       4 conv_iter=       2 cpu clock= 1.27E+00
+ tran: time= 3.0000E-09 tot_iter=       6 conv_iter=       3 cpu clock= 1.27E+00
+ tran: time= 3.5000E-09 tot_iter=       8 conv_iter=       4 cpu clock= 1.27E+00
+ tran: time= 4.0000E-09 tot_iter=     596 conv_iter=     152 cpu clock= 1.32E+00
+ tran: time= 5.0000E-09 tot_iter=     659 conv_iter=     170 cpu clock= 1.33E+00
+ tran: time= 6.0000E-09 tot_iter=     665 conv_iter=     172 cpu clock= 1.33E+00
+ tran: time= 6.5000E-09 tot_iter=     667 conv_iter=     173 cpu clock= 1.33E+00
+ tran: time= 7.2135E-09 tot_iter=     851 conv_iter=     225 cpu clock= 1.34E+00
+ tran: time= 8.0000E-09 tot_iter=     856 conv_iter=     227 cpu clock= 1.34E+00
+ sweep: tran tran0    end,  cpu clock=  1.34E+00 peak memory=       191 mb
+ sweep: end optimization
+>error          ***** hspice job aborted
+ lic: Release hspice token(s)

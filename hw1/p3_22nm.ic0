@@ -1,0 +1,25 @@
+* "simulator" "HSPICE" 
+* "version" "K-2015.06-SP2 linux64"
+* "format" "HSP"
+* "rundate" "01:29:04 02/21/2018 "
+* "netlist" "p3_22nm.sp "
+* "runtitle" "************************************"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ enable = 900.0000m       
++ n1 =  14.4984u       
++ n2 = 899.9076m       
++ n3 =  70.2961u       
++ n4 = 899.9075m       
++ n5 =  70.2964u       
++ n6 = 899.9075m       
++ n7 =  70.2964u       
++ n8 = 899.9075m       
++ out =  70.7765u       
++ vdd = 900.0000m       
++ x0.n0 =  14.5710u       
+***   END: Saved Operating Point ***                     

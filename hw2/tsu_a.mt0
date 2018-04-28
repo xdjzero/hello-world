@@ -1,0 +1,6 @@
+$DATA1 SOURCE='HSPICE' VERSION='K-2015.06-SP2 linux64' PARAM_COUNT=2
+.TITLE '************************************'
+ index            delaytime        maxvout          setuptime       
+                  temper           alter#          
+ 1                   failed           failed           failed       
+                    25.0000        1               

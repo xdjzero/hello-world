@@ -1,0 +1,48 @@
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw1/p2_22nm_PMOS.sw0 1 openonly
+# PF:1
+pf:read PF:1 v(g)
+# WF:1:1
+ScopeSigMgr:SetPfXAxis PF:1 WF:1:1
+pf:read PF:1 i(vds)
+# WF:1:2
+Graph addsignal WF:1:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal0
+pf:read PF:1 lx(gm)
+# WF:1:3
+Graph addsignal WF:1:3 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal1
+wm geometry .sigmgr._PF:1 288x349+641+377
+wm geometry .sigmgr._PF:1 288x349+644+360
+wm geometry .sigmgr._PF:1 288x349+641+352
+wm geometry .sigmgr._PF:1 288x349+630+350
+wm geometry .sigmgr._PF:1 288x349+618+349
+wm geometry .sigmgr._PF:1 288x349+601+357
+wm geometry .sigmgr._PF:1 288x349+598+360
+Mdi:ArrangeIcons
+ScopeSigMgr:Reload 0 {{(1) p2_22nm_PMOS.sw0}}
+Mdi:ArrangeIcons
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw1/p2_22nm_PMOS.sw1 1 openonly
+# PF:3
+pf:read PF:3 v(g)
+# WF:3:1
+ScopeSigMgr:SetPfXAxis PF:3 WF:3:1
+wm geometry .sigmgr._PF:3 288x349+777+411
+wm geometry .sigmgr._PF:3 288x349+797+413
+wm geometry .sigmgr._PF:3 288x349+801+360
+wm geometry .sigmgr._PF:3 288x349+801+352
+pf:read PF:3 lx(gm)
+# WF:3:2
+Graph addsignal WF:3:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal3
+pf:read PF:3 i(vds)
+# WF:3:3
+Graph addsignal WF:3:3 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal4
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+ScopeSigMgr:Unload 1
+Graph0 delsignal Signal3
+Graph0 delsignal Signal4
+Graph0 delsignal Signal2

@@ -1,0 +1,87 @@
+*****************************************
+* inverter
+****************************************
+
+.macro inv IN OUT NFINp=1 Lp=18n NFINn=1  Ln=18n
+
+M1 OUT IN vdd vdd pfet L=Lp NFIN=NFINp
+M2 OUT IN 0 0 nfet L=Ln NFIN=NFINn
+
+.eom
+
+*****************************************
+* weak inverter
+****************************************
+
+.macro weak_inv IN OUT NFINp=1 Lp=18n NFINn=1  Ln=18n
+
+Mp0 p0  IN vdd vdd pfet L=Lp NFIN=NFINp
+Mp1 p1  IN p0  vdd pfet L=Lp NFIN=NFINp
+Mp2 p2  IN p1  vdd pfet L=Lp NFIN=NFINp
+Mp3 p3  IN p2  vdd pfet L=Lp NFIN=NFINp
+Mp4 p4  IN p3  vdd pfet L=Lp NFIN=NFINp
+Mp5 OUT IN p4  vdd pfet L=Lp NFIN=NFINp
+Mn0 n0  IN 0   0   nfet L=Ln NFIN=NFINn
+Mn1 n1  IN n0  0   nfet L=Ln NFIN=NFINn
+Mn2 n2  IN n1  0   nfet L=Ln NFIN=NFINn
+Mn3 n3  IN n2  0   nfet L=Ln NFIN=NFINn
+Mn4 n4  IN n3  0   nfet L=Ln NFIN=NFINn
+Mn5 OUT IN n4  0   nfet L=Ln NFIN=NFINn
+
+.eom
+
+*****************************************
+* CMOS transmission gate
+*****************************************
+
+.macro tgate IN OUT C Cb NFINp=1 NFINn=1
+
+M1 IN Cb OUT vdd pfet L=18n NFIN=NFINp
+M2 IN C OUT 0 nfet L=18n NFIN=NFINn
+
+.eom
+
+*****************************************
+* NMOS load
+*****************************************
+
+.macro load out NFINn=2
+
+M2 0 out 0 0 nfet NFIN=NFINn L=18n m=1
+
+.eom
+
+*****************************************
+*feedback
+****************************************
+
+.macro fdbk pfet0_g pfet1_g nfet0_g nfet1_g OUT NFINp=1 NFINn=1
+
+M1 n0 pfet0_g vdd vdd pfet L=18n NFIN=NFINp
+M2 OUT pfet1_g n0 vdd pfet L=18n NFIN=NFINp
+M3 OUT nfet0_g n1 0 nfet L=18n NFIN=NFINn
+M4 n1 nfet1_g 0 0 nfet L=18n NFIN=NFINn
+
+.eom
+
+
+$****************************************************************************
+$ Block: dff_c
+$****************************************************************************
+.macro dff_c_14nm din clk out
+X1 din net1 inv NFINp=2 NFINn=2
+X2 net1 m_ic clkn1 clkp0 tgate NFINp=1 NFINn=1
+X3 clk clkn0 inv NFINp=1 NFINn=1
+X4 clkn0 clkp0 inv NFINp=1 NFINn=1
+X5 clkp0 clkn1 inv NFINp=1 NFINn=1
+X6 m_ic net3 inv NFINp=2 NFINn=2
+X7 net3 s_ic clk clkn0 tgate NFINp=1 NFINn=1
+X8 net3 clkn0 clkp1 net3 m_ic fdbk NFINp=1 NFINn=1
+X9 clkn0 clkp1 inv NFINp=1 NFINn=1
+X10 s_ic net5 inv NFINp=1 NFINn=1
+X11 net5 s_ic inv NFINp=1 Lp=18n NFINn=1 Ln=18n
+X12 s_ic net6 inv NFINp=6 NFINn=5
+X13 net6 out inv NFINp=18 NFINn=14
+X14 out load NFINn=80
+.eom
+

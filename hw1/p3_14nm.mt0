@@ -1,0 +1,4 @@
+$DATA1 SOURCE='HSPICE' VERSION='K-2015.06-SP2 linux64' PARAM_COUNT=0
+.TITLE '************************************'
+ pcgate           ncgate           temper           alter#          
+  3.813e-15        3.818e-15         25.0000        1               

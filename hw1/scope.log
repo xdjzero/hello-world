@@ -1,0 +1,135 @@
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw1/p3_22nm.tr0 1 openonly
+# PF:1
+wm geometry .sigmgr._PF:1 288x349+646+353
+wm geometry .sigmgr._PF:1 288x349+661+310
+wm geometry .sigmgr._PF:1 288x349+664+297
+wm geometry .sigmgr._PF:1 288x349+665+296
+pf:read PF:1 par(-i(x1.x1.m1)/vdd)
+# WF:1:1
+Graph addsignal WF:1:1 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal0
+Graph:DSel
+Graph:Select Graph0
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{-86.983432215384u 554.49763622466u} {614.779p -131.868p}}
+Graph:DSel
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{497.36478674696u -98.996818163662u} {-235.891p 839.28p}}
+Graph:DSel
+Graph axisconfig {AxisY(0,0) AxisX(0)} -range {{196.04523900264u -80.164346429642u} {-397.12p 1.7234n}}
+Graph:DSel
+pf:read PF:1 v(n1)
+# WF:1:2
+Graph addsignal WF:1:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal1
+Graph:DSel
+Graph:Select Graph0
+Graph axisconfig {AxisY(1,0) AxisX(0)} -range {{-0.039994276555063 1.1605094339235} {2.4418n -1.2168n}}
+Graph axisconfig {AxisX(0) AxisY(0,0) AxisY(1,0)} -range {all all all} -zoomed {0 0 0}
+Mdi:FullSize
+Mdi:ArrangeIcons
+Graph:DSel
+Graph:DSel
+Graph:DSel
+Mdi:ArrangeIcons
+wm geometry .sigmgr._PF:1 288x349+749+249
+wm geometry .sigmgr._PF:1 288x349+874+172
+wm geometry .sigmgr._PF:1 288x349+889+160
+wm geometry .sigmgr._PF:1 288x349+905+146
+wm geometry .sigmgr._PF:1 288x349+931+119
+Graph:DSel
+wm geometry .sigmgr._PF:1 288x349+809+79
+wm geometry .sigmgr._PF:1 288x349+720+35
+Graph:DSel
+pf:read PF:1 par(i(x1.x1.m2)/vdd)
+# WF:1:3
+Graph addsignal WF:1:3 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal2
+Graph:DSel
+Graph:Select Graph0
+Mdi:ArrangeIcons
+Graph:DSel
+Graph:DSel
+Graph:DSel
+Graph:DSel
+wm geometry .sigmgr._PF:1 288x349+724+32
+wm geometry .sigmgr._PF:1 288x349+808+20
+wm geometry .sigmgr._PF:1 288x349+832+18
+wm geometry .sigmgr._PF:1 288x349+934+46
+wm geometry .sigmgr._PF:1 288x349+1020+67
+wm geometry .sigmgr._PF:1 288x349+1044+95
+wm geometry .sigmgr._PF:1 288x349+1045+289
+wm geometry .sigmgr._PF:1 288x349+1038+351
+wm geometry .sigmgr._PF:1 288x349+1031+376
+wm geometry .sigmgr._PF:1 288x349+1027+391
+wm geometry .sigmgr 472x220+936+425
+Mdi:ArrangeIcons
+Graph:DSel
+Mdi:ArrangeIcons
+ScopeSigMgr:Unload 1
+Graph0 delsignal Signal0
+Graph0 delsignal Signal1
+Graph0 delsignal Signal2
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw1/p4_22nm.tr0 1 openonly
+# PF:2
+wm geometry .sigmgr._PF:2 288x349+645+338
+wm geometry .sigmgr._PF:2 288x349+667+280
+wm geometry .sigmgr._PF:2 288x349+705+225
+pf:read PF:2 v(n1)
+# WF:2:1
+Graph addsignal WF:2:1 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal0
+pf:read PF:2 v(n2)
+# WF:2:2
+Graph addsignal WF:2:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal1
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw1/p4_22nm.tr3 1 openonly
+# PF:3
+wm geometry .sigmgr._PF:3 288x349+717+397
+wm geometry .sigmgr._PF:3 288x349+760+395
+wm geometry .sigmgr._PF:3 288x349+843+391
+wm geometry .sigmgr._PF:3 288x349+844+391
+pf:read PF:3 v(n1)
+# WF:3:1
+Graph addsignal WF:3:1 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal2
+wm geometry .sigmgr._PF:3 288x349+852+375
+wm geometry .sigmgr._PF:3 288x349+853+372
+wm geometry .sigmgr._PF:3 288x349+855+368
+wm geometry .sigmgr._PF:3 288x349+857+359
+wm geometry .sigmgr._PF:3 288x349+857+351
+wm geometry .sigmgr._PF:3 288x349+857+350
+wm geometry .sigmgr._PF:3 288x349+845+338
+wm geometry .sigmgr._PF:3 288x349+837+328
+wm geometry .sigmgr._PF:3 288x349+834+325
+wm geometry .sigmgr._PF:3 288x349+831+320
+wm geometry .sigmgr._PF:3 288x349+824+304
+wm geometry .sigmgr._PF:3 288x349+821+291
+wm geometry .sigmgr._PF:3 288x349+820+289
+wm geometry .sigmgr._PF:3 288x349+820+285
+wm geometry .sigmgr._PF:3 288x349+819+281
+wm geometry .sigmgr._PF:3 288x349+834+289
+wm geometry .sigmgr._PF:3 288x349+836+290
+wm geometry .sigmgr._PF:3 288x349+876+303
+wm geometry .sigmgr._PF:3 288x349+889+307
+wm geometry .sigmgr._PF:3 288x349+878+313
+wm geometry .sigmgr._PF:3 288x349+833+312
+wm geometry .sigmgr._PF:3 288x349+804+302
+wm geometry .sigmgr._PF:3 288x349+795+299
+Mdi:ArrangeIcons
+ScopeSigMgr:Reload 0 {{(2) p4_22nm.tr3}}
+wm geometry .sigmgr._PF:2 288x349+977+432
+wm geometry .sigmgr._PF:3 288x349+514+341
+pf:read PF:4 v(n2)
+# WF:4:2
+Graph addsignal WF:4:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal4
+wm geometry .sigmgr._PF:3 288x349+672+338
+wm geometry .sigmgr._PF:3 288x349+952+371
+wm geometry .sigmgr._PF:3 288x349+1110+405
+wm geometry .sigmgr._PF:3 288x349+1079+405
+wm geometry .sigmgr._PF:3 288x349+985+390
+wm geometry .sigmgr._PF:3 288x349+900+383
+wm geometry .sigmgr._PF:3 288x349+892+381
+Mdi:ArrangeIcons
+Mdi:ArrangeIcons

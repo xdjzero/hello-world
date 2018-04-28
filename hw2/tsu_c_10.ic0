@@ -1,0 +1,39 @@
+* "simulator" "HSPICE" 
+* "version" "K-2015.06-SP2 linux64"
+* "format" "HSP"
+* "rundate" "23:13:31 03/30/2018 "
+* "netlist" "tsu_c_10.sp "
+* "runtitle" "************************************"
+* time =    0.            
+* temperature =   25.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ clk =   0.            
++ din = 800.0000m       
++ out = 799.9577m       
++ vdd = 800.0000m       
++ x0.clkn0 = 799.9484m       
++ x0.clkn1 = 799.9485m       
++ x0.clkp0 =  25.3701u       
++ x0.clkp1 =  25.3133u       
++ x0.m_ic =  26.9264u       
++ x0.net1 =  26.6473u       
++ x0.net3 = 799.9474m       
++ x0.net5 =  25.3545u       
++ x0.net6 =  32.9768u       
++ x0.s_ic = 799.9908m       
++ x0.x8.n0 = 671.9704m       
++ x0.x8.n1 =  41.5929n       
++ x0.x11.n0 =   7.5267m       
++ x0.x11.n1 =  17.4040m       
++ x0.x11.n2 =  31.7433m       
++ x0.x11.n3 =  57.7727m       
++ x0.x11.n4 = 161.7026m       
++ x0.x11.p0 = 799.9985m       
++ x0.x11.p1 = 799.9969m       
++ x0.x11.p2 = 799.9954m       
++ x0.x11.p3 = 799.9939m       
++ x0.x11.p4 = 799.9923m       
+***   END: Saved Operating Point ***                     

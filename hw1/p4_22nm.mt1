@@ -1,0 +1,4 @@
+$DATA1 SOURCE='HSPICE' VERSION='K-2015.06-SP2 linux64' PARAM_COUNT=0
+.TITLE 'case 2: vdd=0.7'
+ delay_0          temper           alter#          
+  1.063e-11         25.0000        2               

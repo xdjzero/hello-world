@@ -1,0 +1,6 @@
+$DATA1 SOURCE='HSPICE' VERSION='K-2015.06-SP2 linux64' PARAM_COUNT=0
+.TITLE '************************************'
+ ron              rd               i(vd)            temper          
+ alter#          
+ -5.797e+10       -2.948e+10        2.778e-09         30.0000       
+ 1               

@@ -1,0 +1,156 @@
+*****************************************
+*inverter
+****************************************
+
+.macro inv IN OUT Wp=22n Lp=22n Wn=22n  Ln=22n
+
+M1 OUT IN vdd vdd pmos L=Lp W=Wp
+M2 OUT IN 0 0 nmos L=Ln W=Wn
+
+.eom
+
+ *****************************************
+ * NAND-2 structure
+ *****************************************
+
+ .macro nand A B OUT Wp=22n Wn=22n L=22n
+
+ mna out b vdd vdd pmos W=Wp L=L
+ mnb out a vdd vdd pmos W=Wp L=L
+
+ mpa out a n0 0 nmos W=Wn L=L
+ mpb n0 b 0 0 nmos W=Wn L=L
+
+ .eom
+
+*****************************************
+* weak inverter
+****************************************
+
+.macro weak_inv IN OUT Wp=22n Lp=22n Wn=22n  Ln=22n
+
+Mp0 p0  IN vdd vdd pmos L=Lp W=Wp
+Mp1 p1  IN p0  vdd pmos L=Lp W=Wp
+Mp2 p2  IN p1  vdd pmos L=Lp W=Wp
+Mp3 p3  IN p2  vdd pmos L=Lp W=Wp
+Mp4 p4  IN p3  vdd pmos L=Lp W=Wp
+Mp5 OUT IN p4  vdd pmos L=Lp W=Wp
+Mn0 n0  IN 0   0   nmos L=Ln W=Wn
+Mn1 n1  IN n0  0   nmos L=Ln W=Wn
+Mn2 n2  IN n1  0   nmos L=Ln W=Wn
+Mn3 n3  IN n2  0   nmos L=Ln W=Wn
+Mn4 n4  IN n3  0   nmos L=Ln W=Wn
+Mn5 OUT IN n4  0   nmos L=Ln W=Wn
+
+.eom
+
+*****************************************
+* CMOS transmission gate
+*****************************************
+
+.macro tgate IN OUT C Cb Wp=80n Wn=80n
+
+M1 IN Cb OUT vdd pmos L=22n W=Wp
+M2 IN C OUT 0 nmos L=22n W=Wn
+
+.eom
+
+*****************************************
+* NMOS load
+*****************************************
+
+.macro load out Wn=0.22u
+
+M2 0 out 0 0 nmos W=Wn L=22n m=1
+
+.eom
+
+*****************************************
+*feedback
+****************************************
+
+.macro fdbk pmos0_g pmos1_g nmos0_g nmos1_g OUT Wp=22n Wn=22n
+
+M1 n0 pmos0_g vdd vdd pmos L=22n W=Wp
+M2 OUT pmos1_g n0 vdd pmos L=22n W=Wp
+M3 OUT nmos0_g n1 0 nmos L=22n W=Wn
+M4 n1 nmos1_g 0 0 nmos L=22n W=Wn
+
+.eom
+
+$****************************************************************************
+$ Block: dff_a
+$****************************************************************************
+.macro dff_a din clk out
+M1 din clkn0 m_ic 0 nmos W=100n L=22n
+X1 m_ic net2 inv Wp=200n Wn=150n 
+X2 net2 m_ic weak_inv Wp=100n Lp=150n Wn=100n Ln=150n
+X3 clk clkn0 inv Wp=100n Wn=100n
+M2 net2 clk s_ic 0 nmos W=100n L=22n
+X4 s_ic net4 inv Wp=500n Wn=400n
+X5 dout s_ic weak_inv Wp=100n Lp=150n Wn=100n Ln=150n
+X6 dout out inv Wp=1.5u Wn=1.2u
+X7 out load Wn=6u
+.eom
+
+$****************************************************************************
+$ Block: dff_b
+$****************************************************************************
+.macro dff_b din clk out
+X1 clk clkn0 inv Wp=40n Wn=40n
+X2 clkn0 load Wn=0.8u
+X3 clkn0 clkp0 inv Wp=40n Wn=40n
+X4 clkp0 load Wn=0.8u
+X5 clkp0 clkn1 inv Wp=40n Wn=40n
+X6 clkn1 load Wn=0.8u
+X7 clkn1 clkp1 inv Wp=40n Wn=40n
+X8 clkp1 load Wn=0.8u
+X9 clkp1 clkn2 inv Wp=40n Wn=40n
+X10 clk clkn2 n0 nand Wp=64n Wn=128n
+X11 n0 pclk inv Wp=64n Wn=64n
+X12 pclk pclkn inv Wp=80n Wn=80n
+X13 din net1 inv Wp=160n Wn=160n
+X14 net1 ic pclk pclkn tgate Wp=80n Wn=80n
+X15 icn pclk pclkn icn ic fdbk Wp=80n Wn=80n
+X16 ic icn inv Wp=160n Wn=160n
+X17 ic dout inv Wp=480n Wn=400n
+X18 dout out inv Wp=1.44u Wn=1.12u
+X19 out load Wn=6.4u
+.eom
+
+$****************************************************************************
+$ Block: dff_c
+$****************************************************************************
+.macro dff_c din clk out
+X1 din net1 inv Wp=160n Wn=160n
+X2 net1 m_ic clkn1 clkp0 tgate Wp=80n Wn=80n
+X3 clk clkn0 inv Wp=80n Wn=80n
+X4 clkn0 clkp0 inv Wp=80n Wn=80n
+X5 clkp0 clkn1 inv Wp=80n Wn=80n
+X6 m_ic net3 inv Wp=160n Wn=160n
+X7 net3 s_ic clk clkn0 tgate Wp=80n Wn=80n
+X8 net3 clkn0 clkp1 net3 m_ic fdbk Wp=80n Wn=80n
+X9 clkn0 clkp1 inv Wp=80n Wn=80n
+X10 s_ic net5 inv Wp=80n Wn=80n
+X11 net5 s_ic weak_inv Wp=80n Lp=22n Wn=80n Ln=22n
+X12 s_ic dout inv Wp=480n Wn=400n
+X13 dout out inv Wp=1.44u Wn=1.12u
+X14 out load Wn=6.4u
+.eom
+
+
+$****************************************************************************
+$ Block: dff_b for spring 2016 and before
+$****************************************************************************
+.macro dff_b_old din clk out
+X1 din net1 inv Wp=400n Wn=160n
+X2 net1 m_ic clkn0 clk tgate Wp=80n Wn=80n
+X3 clk clkn0 inv Wp=160n Wn=160n
+X4 m_ic net3 inv Wp=400n Wn=160n 
+X5 net3 m_ic weak_inv Wp=80n Lp=22n Wn=80n Ln=22n
+X6 net3 s_ic clk clkn0 tgate Wp=80n Wn=80n
+X7 s_ic net5 inv Wp=480n Wn=400n
+X8 net5 s_ic weak_inv Wp=80n Lp=22n Wn=80n Ln=22n
+X9 net5 out inv Wp=1.44u Wn=1.12u
+X10 out load Wn=6.4u
+.eom

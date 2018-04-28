@@ -1,0 +1,15 @@
+* "simulator" "HSPICE" 
+* "version" "K-2015.06-SP2 linux64"
+* "format" "HSP"
+* "rundate" "22:32:37 02/20/2018 "
+* "netlist" "p1_22nm_NMOS.sp "
+* "runtitle" "************************************"
+* time =    0.            
+* temperature =   30.0000        
+*** BEGIN: Saved Operating Point ***                     
+.option 
++ gmindc=   1.0000p       
+.nodeset
++ in = 900.0000m       
++ vdd =   0.            
+***   END: Saved Operating Point ***                     

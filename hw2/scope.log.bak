@@ -1,0 +1,51 @@
+Mdi:ArrangeIcons
+ScopeSigMgr:loadpffile /home/ecelrc/students/dxie1/VLSI2/HW/hello-world/hw2/thd_a_10.tr0 1 openonly
+# PF:1
+wm geometry .sigmgr._PF:1 288x349+632+390
+wm geometry .sigmgr._PF:1 288x349+816+198
+pf:read PF:1 v(din)
+# WF:1:1
+Graph addsignal WF:1:1 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal0
+pf:read PF:1 v(clk)
+# WF:1:2
+Graph addsignal WF:1:2 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal1
+pf:read PF:1 {x0;v(net4)}
+# WF:1:3
+Graph addsignal WF:1:3 -region new -yview real(y) -xview real(x) -tracehi 2
+# Signal2
+Mdi:ArrangeIcons
+ScopeSigMgr:Reload 0 {{(1) thd_a_10.tr0 [11]}}
+Mdi:ArrangeIcons
+ScopeSigMgr:Reload 0 {{(1) thd_a_10.tr0 [11]}}
+Graph:DSel
+Graph:Select Graph0
+Graph axisconfig {AxisY(2,0) AxisX(0)} -range {{0.97014570141113 -0.29468830178892} {2.7264n 3.9134n}}
+Graph:DSel
+Graph:DSel
+Mdi:Resize 913 551
+Mdi:Move 5 5
+Graph:DSel
+Graph axisconfig {AxisY(2,0) AxisX(0)} -range {{0.92655749444822 -0.3861883787515} {3.0069382652n 3.3424777258n}}
+Graph:DSel
+Graph axisconfig {AxisX(0) AxisY(0,0) AxisY(1,0) AxisY(2,0)} -range {all all all all} -zoomed {0 0 0 0}
+Graph:DSel
+Mdi:ArrangeIcons
+ScopeSigMgr:Reload 0 {{(1) thd_a_10.tr0 [11]}}
+Graph:DSel
+Graph:Select Graph0
+Graph axisconfig {AxisY(2,0) AxisX(0)} -range {{1.0121950340918 -0.11301571436513} {2.9142n 5.3143n}}
+Mdi:ArrangeIcons
+Graph:DSel
+ScopeSigMgr:Reload 0 {{(1) thd_a_10.tr0 [11]}}
+Mdi:ArrangeIcons
+Graph:DSel
+Graph:Select Graph0
+Mdi:ArrangeIcons
+Graph:DSel
+ScopeSigMgr:Reload 0 {{(1) thd_a_10.tr0 [11]}}
+Mdi:ArrangeIcons
+wm geometry .sigmgr 472x220+0+0
+wm geometry .sigmgr 472x220+743+133
+wm geometry .sigmgr 472x220+743+105
